@@ -5,7 +5,7 @@ import grails.transaction.Transactional
 @Transactional
 class PersonaService {
 
-    def serviceMethod(String usuario, String password) {
+    def validarLogin(String usuario, String password) {
 		 String usuarioPrueba="mario"
 		String passwordPrueba="pass"
 		boolean bandera = false;

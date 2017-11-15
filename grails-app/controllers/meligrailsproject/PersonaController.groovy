@@ -1,30 +1,24 @@
 package meligrailsproject
 
 class PersonaController {
-	PersonaService personaService;
+	PersonaService personaService= new PersonaService();
 	static allowedMethods = [validarLogin:'POST']
-		
-    def validarLogin = {
-			
-		personaService = new PersonaService();
-		if(personaService.serviceMethod(params.usuario,params.password)){
+
+	def validarLogin = {
+
+
+		println(params.usuario+" "+params.password )
+		String usuario = params.usuario
+		String password= params.password
+		boolean metodo = personaService.validarLogin(params.usuario,params.password)
+		println (metodo)
+		if(metodo){
 			println("Ok")
 		}else{
-				println("false")
-	
-				}
-			if(params.usuario== "mario" && params.password =="pass"){
-				println "ASD";
-				[error:""]
-			}else{
-				render (view: "login", model: [error:"eror login"])
-			}
-	
-	}   
-	
-    def login = {
-    }
-	
-	
-	
+			render (view: "login", model: [error:"eror login"])
+		}
+	}
+
+	def login = {
+	}
 }
