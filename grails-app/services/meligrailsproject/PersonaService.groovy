@@ -5,13 +5,17 @@ import grails.transaction.Transactional
 @Transactional
 class PersonaService {
 
-    def validarLogin(String usuario, String password) {
-		 String usuarioPrueba="mario"
-		String passwordPrueba="pass"
+	def validarLogin(String usuario, String password) {
+
 		boolean bandera = false;
-		if(usuarioPrueba == usuario &&  passwordPrueba == password){
-		 	bandera=true;
-		}		
-		return bandera
-    }
+		if(usuario) {
+			def personaAux = Persona.findByUsuario(usuario)
+			if(personaAux){
+				if(personaAux.password == password) {
+					bandera = true;
+				}
+			}
+		}
+		bandera
+	}
 }
